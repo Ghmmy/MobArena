@@ -73,6 +73,7 @@ public class MASpawnThread implements Runnable
         waveManager.reset();
         playerCount = arena.getPlayersInArena().size();
         monsterLimit = arena.getSettings().getInt("monster-limit", 100);
+        waveThreshold = arena.getSettings().getInt("wave-threshold", 0);
         waveClear = arena.getSettings().getBoolean("clear-wave-before-next", false);
         bossClear = arena.getSettings().getBoolean("clear-boss-before-next", false);
         preBossClear = arena.getSettings().getBoolean("clear-wave-before-boss", false);
@@ -308,8 +309,8 @@ public class MASpawnThread implements Runnable
             return false;
         }
 
-        // Check for wave and pre boss clear
-        if (waveClear && !monsterManager.getMonsters().isEmpty()) {
+        // Check for wave clear and if monsters alive is less than or equal to the defined option
+        if (waveClear && monsterManager.getMonsters().size() > waveThreshold) {
             return false;
         }
 
