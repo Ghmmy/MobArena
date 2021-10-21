@@ -40,7 +40,7 @@ public class MASpawnThread implements Runnable
     private MonsterManager monsterManager;
     private CreatesHealthBar createsHealthBar;
 
-    private int playerCount, monsterLimit;
+    private int playerCount, monsterLimit, waveThreshold;
     private boolean waveClear, bossClear, preBossClear, wavesAsLevel;
     private int waveInterval;
     private int nextWaveDelay;
